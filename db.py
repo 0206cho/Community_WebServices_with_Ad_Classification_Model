@@ -20,13 +20,30 @@ class MyDao:
         db.commit()
         db.close()
         return ret
-    
-    def insEmp(self, title, context):
+
+    def getAns(self):
+        ret = []
         db = pymysql.connect(host="49.50.174.207", user="noe", passwd="1234", db="noe", charset="utf8")
         curs = db.cursor()
         
-        sql = '''insert into noe (title, context) values(%s,%s)'''
-        curs.execute(sql,(title, context))
+        sql = "select * from noe_ans";
+        curs.execute(sql)
+        
+        rows = curs.fetchall()
+        for e in rows:
+            temp = {'ans_num':e[0],'num':e[1], 'ans':e[2]}
+            ret.append(temp)
+        
+        db.commit()
+        db.close()
+        return ret
+    
+    def insEmp(self, title, context, adv):
+        db = pymysql.connect(host="49.50.174.207", user="noe", passwd="1234", db="noe", charset="utf8")
+        curs = db.cursor()
+        
+        sql = '''insert into noe (title, context, adv) values(%s,%s,%s)'''
+        curs.execute(sql,(title, context, adv))
         db.commit()
         db.close()
     

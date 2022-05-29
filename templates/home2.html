@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet"> <!--css-->
+  <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+  <!--css-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon"  type="image/png"  href="http://example.com/myicon.png">
@@ -56,24 +57,18 @@
     </div>
   </nav>
   <!--Home-->
-  <main role="main" class="container" style="background-color:white">
+  <main role="main" class="container" style="background-color:white;">
     <div style="background-color: white;">
-
       <!--카드-->
       <br><br>
 
       {% for noe in noelist %}
-      <div>
-        <a href="javascript:fn_detail('{{noe.title}}','{{noe.context}}')">{{noe.num}}</a>
-      </div>
-
       <div class="card" style="width: 90%; margin: auto;">
-        <a onclick="window.location.href='home_big'" class="nav-link">
-
+        <a href="javascript:fn_detail('{{noe.title}}','{{noe.context}}')" class="nav-link">
           <div class="card-body">
-            <h5 class="card-title" style="font-weight: bold;">{{noe.title}}</h5>
+            <h5 class="card-title" style="font-weight: bold;">{{noe.num}} ) {{noe.title}}</h5>
             <p class="card-text">{{noe.context}}</p>
-            <button href='home_big' class="btn btn-outline-success drdr">댓글</button>
+            <button href="javascript:fn_detail('{{noe.title}}','{{noe.context}}')"  data-bs-toggle="modal" data-bs-target="#usernameModal" class="btn btn-outline-success drdr">댓글</button>
           </div>
 
         </a>
@@ -81,22 +76,46 @@
       <br>
       {% endfor %}
 
-      <!--검색창-->
-      <div class="card" style="padding-bottom: 1rem; padding-top: 1rem; border:none;">
-        제목 <br>
-        <div class="input-group">
+      <div class="modal fade" id="usernameModal" tabindex="-1" aria-labelledby="usernameModal" aria-hidden="true">
+        <div class="modal-dialog modal-fullsize" style="width: 100%;"> <!--모달창 가로 크기-->
+          <div class="modal-content modal-fullsize">
+            <div class="modal-header" style="border: none;">
 
-          <input type="text" class="form-control" id="title">
+              <!-- <h5 class="modal-title" id="usernameModal" style="font-weight: bold;">이름 변경하기</h5> -->
+              <h5 class="form-control" id="title" style="font-size : 25px; border: 0px; font-weight: bold; width:100%; word-break:break-all; word-wrap:break-word; height: auto;"" disabled></h5><!--title-->
+              <div data-bs-dismiss="modal" aria-label="Close" style="font-size:20pt;">&times;</div>
+            </div>
+            <div class="modal-body">
+              <div class="context form-control" id="usernameModal" style="border: 0px; width:100%; word-break:break-all; word-wrap:break-word; height: auto;"> <!--context--></div>
+                <!-- <a href="#" class="btn btn-primary drdr">댓글</a> -->
+                <hr class="my-hr2">
+                {% for ans in ans %}
+                <h5 class="card-title">익명</h5>
+                <p class="card-text">{{ans.ans}}</p>
+                <hr>
+                {% endfor %}
+                
+                <h5 class="card-title">익명</h5>
+                <p class="card-text">나도 취업하고 싶다,,,</p>
+                <hr>
+                <h5 class="card-title">익명</h5>
+                <p class="card-text">나도 취업하고 싶다,,,</p>
+                <hr class="my-hr2">
+                <!--검색창-->
+                <div class="input-group">
+                    <input type="text" class="form-control" id="keyword">
+                    <button class="btn btn-outline-success drdr">댓글</button>
+                </div>
+
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-modal" id="name_btn">적용</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card" style="padding-bottom: 1rem; padding-top: 1rem; border:none;">
-        내용 <br>
-        <div class="input-group">
-          <input type="text" class="form-control" id="context">
-        </div>
-      </div>
-      <br>
-      <input onclick="fun_add()" id="add" class="btn" type="button" value="글쓰기">
 
       <div>
         <!--js에서 카드 for로 가져옴-->
@@ -119,6 +138,9 @@
     crossorigin="anonymous"></script>
 
   <script>
+    // var num = document.getElementById("noe_num").value
+    // console.log(num);
+
     function fun_add() {
       const title = document.getElementById("title").value
       const context = document.getElementById("context").value
@@ -140,15 +162,13 @@
 
         }
       })
-
     }
 
     function fn_detail(title, context) {
-      var obj_title = document.getElementById("title");
-      var obj_context = document.getElementById("context");
 
-      obj_title.value = title;
-      obj_context.value = context;
+      $("#title").text(title);
+      $(".context").text(context);
+
     }
   </script>
 

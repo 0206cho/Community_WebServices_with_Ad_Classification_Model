@@ -39,14 +39,50 @@ a.nav-link:active {
 	color: black
 }
 
-.drdr{
+.drdr {
 	background-color: rgb(186, 190, 225);
 	color: black;
 	border-color: #666;
 }
+
 /*hr 태그 굵게*/
 .my-hr2 {
-    border: 0;
-    height: 2px;
-    background: #ccc;
-  }
+	border: 0;
+	height: 2px;
+	background: #ccc;
+}
+
+.modal.in {
+	padding-right: 0 !important;
+}
+
+.modal-dialog {
+	width: 100%;
+	max-width: 1000px;
+	/* height: 100%; */
+	padding: 0;
+	margin: 0 auto;
+}
+
+.modal-content {
+	/* height: 100%; */
+	overflow: auto;
+}
+
+.modal-header {
+	margin-bottom: -60px;
+	position: relative;
+	z-index: 10;
+}
+
+.modal-body {
+	padding-top: 70px;
+	/* height: 100%; */
+}
+
+.modal-body .in-content {
+	border-width: 0;
+	width: 100%;
+	/* height: 100%; */
+	overflow: auto;
+}

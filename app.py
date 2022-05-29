@@ -9,7 +9,8 @@ app = Flask(__name__) 		 # 플라스크 앱 생성
 @app.route('/')				 # 기본('/') 웹주소로 요청이 오면 
 def home():     			 # hello 함수 실행
     noelist = MyDao().getEmps();
-    return render_template('home2.html',noelist=noelist)
+    ans = MyDao().getAns();
+    return render_template('home2.html',noelist=noelist, ans=ans)
 
 # 글 추가
 @app.route('/ins.ajax', methods=['POST'])
@@ -17,7 +18,8 @@ def ins_ajax():
     data = request.get_json()
     title = data['title']
     context = data['context']
-    cnt = MyDao().insEmp(title, context)
+    adv = data['adv']
+    cnt = MyDao().insEmp(title, context, adv)
     result = "success" if cnt==1 else "fail"
     return jsonify(result = result)
 
