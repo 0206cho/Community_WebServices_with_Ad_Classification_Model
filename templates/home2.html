@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head >
+<head>
   <!-- include libraries(jQuery, bootstrap) -->
   <!--css-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -9,7 +9,7 @@
   <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="http://example.com/myicon.png">
+  <link rel="icon"  type="image/png"  href="http://example.com/myicon.png">
   <title>N_OE</title>
 </head>
 
@@ -56,7 +56,8 @@
       <form class="form-inline my-2 my-lg-0">
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
           <li>
-            <a onclick="window.location.href='home_write'" class="nav-link write" style="padding-bottom: 5mm; padding-top: 3mm;">
+            <a onclick="window.location.href='home_write'" class="nav-link write"
+              style="padding-bottom: 5mm; padding-top: 3mm;">
               <!--모달창 추가-->
               <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                 <use xlink:href="#add" />
@@ -77,91 +78,55 @@
     </div>
   </nav>
   <!--Home-->
-  <main role="main" class="container" style="background-color:white" > 
+  <main role="main" class="container" style="background-color:white">
     <div style="background-color: white;">
 
-    <!--카드-->
-    <br><br>
+      <!--카드-->
+      <br><br>
 
-    <div class="card" style="width: 90%; margin: auto;">
-      <a onclick="window.location.href='home_big'" class="nav-link">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">취업하고 싶어요.</h5>
-          <p class="card-text">근데 어디로,,,?</p>
-          <button href="big.html" class="btn btn-outline-success drdr">댓글</button>
-        </div>
-      </a>
-    </div>
-    <br>
-    <div class="card" style="width: 90%; margin: auto;">
-      <a onclick="window.location.href='home_big'" class="nav-link">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">제거제 추천좀염^!^</h5>
-          <p class="card-text">얼굴 솜털이 너무 길고 많아서요. 솜털 제거기로 하고 싶은데 저렴히라 그런가 세번씀녀 망가지네요. 이웃분들 괜찮은거나 뜯어내는 팩 추천 좀 해주세염~~</p>
-          <button href="big.html" class="btn btn-outline-success drdr">댓글</button>
-        </div>
-      </a>
-    </div>
-    <br>
-  </div>
-  <!-- <table>
-  <tbody>
-    {% for noe in noelist %}
-    <tr>      
-      <td>{{noe.title}}</td>
-      <td>{{noe.context}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table> -->
 
-{% for noe in noelist %}
-<div class="card" style="width: 90%; margin: auto;">
-  <a onclick="window.location.href='home_big'" class="nav-link">
-    
-    <div class="card-body">
-      <h5 class="card-title" style="font-weight: bold;">{{noe.title}}</h5>
-      <p class="card-text">{{noe.context}}</p>
-      <button href="big.html" class="btn btn-outline-success drdr">댓글</button>
-    </div>
-    
-  </a>
-</div>
-<br>
-{% endfor %}
-    <!-- <div class="card" style="width: 90%; margin: auto;">
-      <a href="big.html" class="nav-link">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">ㅈㄱㄴ</h5>
-          <p class="card-text">연수역쪽 삼겹살 맛있는데 있나요? 추천 부탁드려용 ~~</p>
-          <button href="big.html" class="btn btn-outline-success drdr">댓글</button>
-        </div>
-      </a>
-    </div>
-    <br>
-    <div class="card" style="width: 90%; margin: auto;">
-      <a href="big.html" class="nav-link">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">ㅈㄱㄴ</h5>
-          <p class="card-text">연수역쪽 삼겹살 맛있는데 있나요? 추천 부탁드려용 ~~</p>
-          <button href="big.html" class="btn btn-outline-success drdr">댓글</button>
-        </div>
-      </a>
-    </div>
-    <br>
-    <div class="card" style="width: 90%; margin: auto;">
-      <a href="big.html" class="nav-link">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">ㅈㄱㄴ</h5>
-          <p class="card-text">연수역쪽 삼겹살 맛있는데 있나요? 추천 부탁드려용 ~~</p>
-          <button href="big.html" class="btn btn-outline-success drdr">댓글</button>
-        </div>
-      </a>
-    </div> -->
 
-    <div>
-      <!--js에서 카드 for로 가져옴-->
-    </div>
+
+      {% for noe in noelist %}
+      <div>
+        <a href="javascript:fn_detail(
+				'{{noe.title}}','{{noe.context}}')">{{noe.title}}</a>
+      </div>
+
+      <div class="card" style="width: 90%; margin: auto;">
+        <a onclick="window.location.href='home_big'" class="nav-link">
+
+          <div class="card-body">
+            <h5 class="card-title" style="font-weight: bold;">{{noe.title}}</h5>
+            <p class="card-text">{{noe.context}}</p>
+            <button href=z class="btn btn-outline-success drdr">댓글</button>
+          </div>
+
+        </a>
+      </div>
+      <br>
+      {% endfor %}
+
+      <!--검색창-->
+      <div class="card" style="padding-bottom: 1rem; padding-top: 1rem; border:none;">
+        제목 <br>
+        <div class="input-group">
+
+          <input type="text" class="form-control" id="title">
+        </div>
+      </div>
+      <div class="card" style="padding-bottom: 1rem; padding-top: 1rem; border:none;">
+        내용 <br>
+        <div class="input-group">
+          <input type="text" class="form-control" id="context">
+        </div>
+      </div>
+      <br>
+      <input onclick="fun_add()" id="add" class="btn" type="button" value="글쓰기">
+
+      <div>
+        <!--js에서 카드 for로 가져옴-->
+      </div>
     </div>
     <br>
     <br>
@@ -179,6 +144,40 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
+  <script>
+    function fun_add() {
+      const title = document.getElementById("title").value
+      const context = document.getElementById("context").value
+      var param = {
+        'title': title,
+        'context': context,
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/ins.ajax',
+        data: JSON.stringify(param),
+        dataType: 'JSON',
+        contentType: "application/json",
+        success: function (data) {
+          location.reload()
+        },
+        error: function (request, status, error) {
+
+        }
+      })
+
+    }
+
+    function fn_detail(title, context) {
+      var obj_title = document.getElementById("title");
+      var obj_context = document.getElementById("context");
+
+      obj_title.value = title;
+      obj_context.value = context;
+    }
+  </script>
 
 </body>
 
