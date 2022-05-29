@@ -6,21 +6,12 @@ from flask.json import jsonify
 
 app = Flask(__name__) 		 # 플라스크 앱 생성
 
-# # database 접근
-# db = pymysql.connect(host="49.50.174.207", user="noe", passwd="1234", db="noe", charset="utf8")
-# # database 사용하기 위해 cursor 세팅
-# cur = db.cursor()
-
-# sql = "SELECT * from noe"
-# cur.execute(sql)
-
-# data_list = cur.fetchall()
-
 @app.route('/')				 # 기본('/') 웹주소로 요청이 오면 
 def home():     			 # hello 함수 실행
     noelist = MyDao().getEmps();
     return render_template('home2.html',noelist=noelist)
 
+# 글 추가
 @app.route('/ins.ajax', methods=['POST'])
 def ins_ajax():
     data = request.get_json()

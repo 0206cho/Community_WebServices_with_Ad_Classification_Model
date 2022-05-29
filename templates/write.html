@@ -76,36 +76,28 @@
     </nav>
 
     <!--Home-->
-    <main role="main" class="container"  style="background-color: white;">
-        <div>
-        <br>
-        <br>
-        <!--CK에디터 사용-->
-        <form action="" method="POST">
-            <textarea name="text" id="editor"></textarea>
-            <br>
-            <!-- <p><input type="submit" class = "drdr" value="저장"> -->
-            <div style="background-color:white"><button type="submit" class="btn btn-outline-success drdr" style="float: right; background-color: white;">저장</button></p></div>
-        </form>
-        </div>
-        <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
-        <!--한글 사용시-->
-        <script>
-            ClassicEditor.create(document.querySelector('#editor'), {
-                language: "ko" // 한글 사용시
-            });            
-        </script>
-        <br>
-        <br>
+    <main role="main" class="container" style="background-color: white;">
+        <br><br>
+            제목 <br><br>
+            <div class="input-group">
+                <input type="text" class="form-control" id="title">
+            </div>
+        <br><Br>
 
+            내용 <br><br>
+            <div class="input-group">
+                <input type="text" class="form-control" id="context">
+            </div>
+
+        <br>
+        <input onclick="fun_add()" id="add" class="btn btn-outline-success drdr" type="button" value="글쓰기" style="float: right;">
+        <br><br>
     </main>
     <!--js-->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-    <!-- <script type="text/javascript" src="../public/js/home.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -113,6 +105,35 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+
+    <!--글쓰기 버튼 클릭 시-->
+    <script>
+        function fun_add() {
+            const title = document.getElementById("title").value
+            const context = document.getElementById("context").value
+            var param = {
+                'title': title,
+                'context': context,
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/ins.ajax',
+                data: JSON.stringify(param),
+                dataType: 'JSON',
+                contentType: "application/json",
+                success: function (data) {
+                    location.href = '/'; // 홈으로 이동
+                    // location.reload(); // 페이지 새로고침
+                    // history.back();  // 이전페이지 이동
+                },
+                error: function (request, status, error) {
+
+                }
+            })
+
+        }
+    </script>
 
 </body>
 

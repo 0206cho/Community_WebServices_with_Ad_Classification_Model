@@ -14,7 +14,7 @@ class MyDao:
         
         rows = curs.fetchall()
         for e in rows:
-            temp = {'title':e[0],'context':e[1]}
+            temp = {'title':e[0],'context':e[1], 'num':e[2]}
             ret.append(temp)
         
         db.commit()
