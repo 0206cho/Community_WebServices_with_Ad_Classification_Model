@@ -3,6 +3,20 @@ from flask import Flask, render_template, request	 # 플라스크 모듈 호출
 from db import MyDao
 from flask.json import jsonify
 
+# import torch
+# from torch import nn
+# import torch.nn.functional as F
+# import torch.optim as optim
+# from torch.utils.data import Dataset, DataLoader
+# import gluonnlp as nlp
+# import numpy as np
+# from tqdm.notebook import tqdm
+
+# from kobert import get_tokenizer
+# from kobert import get_pytorch_kobert_model
+
+import pandas as pd
+
 app = Flask(__name__) 		 # 플라스크 앱 생성
 
 @app.route('/')				 # 기본('/') 웹주소로 요청이 오면 
@@ -16,8 +30,7 @@ def ins_ajax():
     data = request.get_json()
     title = data['title']
     context = data['context']
-    adv = data['adv']
-    cnt = MyDao().insEmp(title, context, adv)
+    cnt = MyDao().insEmp(title, context)
     result = "success" if cnt==1 else "fail"
     return jsonify(result = result)
 

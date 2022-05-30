@@ -91,17 +91,17 @@
 
         <br>
 
-        <div>광고유무:&nbsp;&nbsp;
+        <!-- <div>광고유무:&nbsp;&nbsp;
 
             <input type="radio" id="adv_y" name="adv" value="Y">
             <label for="adv_y">Y</label> &nbsp;&nbsp;
 
             <input type="radio" id="adv_n" name="adv" value="N" checked>
-            <label for="adv_n">N</label>
+            <label for="adv_n">N</label> -->
 
-            <input onclick="fun_add()" id="add" class="btn btn-outline-success drdr" type="button" value="글쓰기"
-                style="float: right;">
-            <br><br>
+        <input onclick="fun_add()" id="add" class="btn btn-outline-success drdr" type="button" value="글쓰기"
+            style="float: right;">
+        <br><br><br>
     </main>
     <!--js-->
 
@@ -121,12 +121,12 @@
         function fun_add() {
             const title = document.getElementById("title").value
             const context = document.getElementById("context").value
-            const radioVal = $('input[name="adv"]:checked').val();
+            // const radioVal = $('input[name="adv"]:checked').val();
 
             var param = {
                 'title': title,
                 'context': context,
-                'adv' : radioVal,
+                // 'adv' : radioVal,
             }
 
             $.ajax({

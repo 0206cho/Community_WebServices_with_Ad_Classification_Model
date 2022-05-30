@@ -10,12 +10,12 @@ class MyDao:
         db = pymysql.connect(host="49.50.174.207", user="noe", passwd="1234", db="noe", charset="utf8")
         curs = db.cursor()
         
-        sql = "select * from noedb";
+        sql = "select * from noedb order by num desc";
         curs.execute(sql)
         
         rows = curs.fetchall()
         for e in rows:
-            temp = {'title':e[0],'context':e[1], 'num':e[2]}
+            temp = {'title':e[0],'context':e[1], 'num':e[2], 'adv':e[3]}
             ret.append(temp)
         
         db.commit()
@@ -60,12 +60,12 @@ class MyDao:
         return ret
 
     # 공지 추가 insert
-    def insEmp(self, title, context, adv):
+    def insEmp(self, title, context):
         db = pymysql.connect(host="49.50.174.207", user="noe", passwd="1234", db="noe", charset="utf8")
         curs = db.cursor()
         
-        sql = '''insert into noedb (title, context, adv) values(%s,%s,%s)'''
-        curs.execute(sql,(title, context, adv))
+        sql = '''insert into noedb (title, context) values(%s,%s)'''
+        curs.execute(sql,(title, context))
         db.commit()
         db.close()
 
