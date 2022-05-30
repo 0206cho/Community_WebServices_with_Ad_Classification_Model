@@ -67,24 +67,25 @@
         <br><br>
         <div class="card" style="width: 100%; height: 100%;">
             <div class="card-body">
-                <h5 class="card-title" style="font-weight: bold;">취업하고 싶어요.</h5>
-                <p class="card-text">2022-05-26 12:00</p>
-                <p class="card-text">근데 어디로,,,?</p>
-                <!-- <a href="#" class="btn btn-primary drdr">댓글</a> -->
+                {% for noe in noe %}
+                <input type="hidden" class="form-control" id="noe_num" value="{{noe.num}}">
+                <!-- <div id = "noe_num">{{noe.num}}</div> -->
+                <h5 class="card-title" style="font-weight: bold;">{{noe.title}}</h5>
+                <p class="card-text">{{noe.context}}</p>
+                {% endfor %}
+
                 <hr class="my-hr2">
+                {% for ans in ans %}
                 <h5 class="card-title">익명</h5>
-                <p class="card-text">나도 취업하고 싶다,,,</p>
+                <p class="card-text">{{ans.ans}}</p>
                 <hr>
-                <h5 class="card-title">익명</h5>
-                <p class="card-text">나도 취업하고 싶다,,,</p>
-                <hr>
-                <h5 class="card-title">익명</h5>
-                <p class="card-text">나도 취업하고 싶다,,,</p>
+                {% endfor %}
+
                 <hr class="my-hr2">
                 <!--검색창-->
                 <div class="input-group">
-                    <input type="text" class="form-control" id="keyword">
-                    <button class="btn btn-outline-success drdr">댓글</button>
+                    <input type="text" class="form-control" id="ans">
+                    <button onclick="fun_add()" class="btn btn-outline-success drdr">댓글</button>
                 </div>
             </div>
         </div>
@@ -104,6 +105,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+
+    <!--댓글 쓰기 버튼 클릭 시-->
+    <script>
+        function fun_add() {
+            const ans = document.getElementById("ans").value
+            const noe_num = document.getElementById("noe_num").value
+
+            var param = {
+                'num': noe_num,
+                'ans': ans,
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/ans_ins.ajax',
+                data: JSON.stringify(param),
+                dataType: 'JSON',
+                contentType: "application/json",
+                success: function (data) {
+                    location.reload(); // 페이지 새로고침
+                },
+                error: function (request, status, error) {
+
+                }
+            })
+
+        }
+    </script>
 
 </body>
 

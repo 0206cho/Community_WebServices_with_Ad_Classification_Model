@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request	 # 플라스크 모듈 호출
-import pymysql
 
 from db import MyDao
 from flask.json import jsonify
@@ -7,13 +6,12 @@ from flask.json import jsonify
 app = Flask(__name__) 		 # 플라스크 앱 생성
 
 @app.route('/')				 # 기본('/') 웹주소로 요청이 오면 
-def home():     			 # hello 함수 실행
+def home():
     noelist = MyDao().getEmps();
-    ans = MyDao().getAns();
-    return render_template('home2.html',noelist=noelist, ans=ans)
+    return render_template('home.html',noelist=noelist)
 
 # 글 추가
-@app.route('/ins.ajax', methods=['POST'])
+@app.route('/ins.ajax', methods=['GET', 'POST'])
 def ins_ajax():
     data = request.get_json()
     title = data['title']
@@ -29,9 +27,24 @@ def home_write():
     return render_template('write.html');
 
 # big html 이동
-@app.route('/home_big')
+@app.route('/home_big', methods=['GET'])
 def home_big():
-    return render_template('big.html');
+    num = '%s' %request.args.get('num')
+    noe = MyDao().getEmpss(num);
+    ans = MyDao().getAnss(num);
+    return render_template('big.html', noe=noe, ans = ans);
+
+
+# 댓글 추가
+@app.route('/ans_ins.ajax', methods=['GET', 'POST'])
+def ans_ins_ajax():
+    data = request.get_json()
+    num = data['num']
+    ans = data['ans']
+    cnt = MyDao().insAns(num, ans)
+    result = "success" if cnt==1 else "fail"
+    return jsonify(result = result)
+
 		
 if __name__ == '__main__':	 # main함수
     app.run(debug=True, port=5000, host='0.0.0.0')
