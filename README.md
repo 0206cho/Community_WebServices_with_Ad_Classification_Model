@@ -1,3 +1,57 @@
+## 광고 분류 모델을 도입한 커뮤니티 웹 서비스<br>_Community Web Services with Ad Classification Model
+<p> 
+ 
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
+</p>
+<hr>
+
+## 📑 프로젝트 개요
+언택트 소비가 활성화되면서 더욱 많은 소비자들이 상품평이나 구매 후기 등에 의존하게 되고, 이에 따라 기업들은 구매후기 작성에 따른 혜택을 늘려가고 있다. <br>
+광고 기술, 즉 애드테크(Ad-tech)가 발전함에 따라 다양한 유형의 새로운 광고들이 이용자가 추구하는 정보/콘텐츠와 구별되지 않기 때문에 이용자들은 어려움을 겪고 있다.
+본 프로젝트의 목표는 KoBERT를 이용해 광고 분류 모델을 도입한 커뮤니티 웹 서비스를 구현하는 것이다.
+<br>
+
+## 📋 시스템구성 및 기능
+[ 시스템 구조 ] <br>
+<img src="imgs/image.png">
+
+[ 데이터베이스 구조 ] <br>
+<img src="imgs/md_db.png">
+
+[ 동작 시나리오 ] <br>
+<img src="imgs/md_act.png">
+
+[ 모델 학습 결과 ]  그래프 : 에포크에 따른 학습 및 테스트셋의 정확도  <br>
+<img src="imgs/md_model.png">
+
+학습 데이터셋의 경우 에포크가 2일 때 가장 높은 점수가 나왔으나, 테스트 데이터셋의 정확도와 큰 차이를 보였다. <br>
+에포크가 7의 경우, 학습 데이터셋은 0.81511, 테스트 데이터셋은 0.70770으로 0.10741 오차를 보였다.<br>
+또한 에포크 10의 경우에는, 학습 데이터셋 0.84204, 테스트 데이터셋은 0.71208으로 0.12996 오차를 보였다. <br>
+따라서 에포크가 7 또는 10일때의 모델을 사용하는 것이 적합하다고 생각해 10까지 학습시킨 모델을 사용하였다.
+<br>
+
+## 💻 프로젝트 구현
+<img src="imgs/md_img_1.png">
+서비스에 접속하면 게시글을 볼 수 있다. 광고 글의 경우 제목 위에 광고 라벨이 표시된다. <br> <br>
+<img src="imgs/md_img_2.png">
+글쓰기 버튼을 눌러 글을 등록할 수 있다. 먼저 일상 글을 입력하였다. <br> <br>
+<img src="imgs/md_img_3.png">
+글이 등록된 모습이다. 일상 글이기 때문에 광고 라벨이 없는 것을 확인할 수 있다. <Br> <br>
+<img src="imgs/md_img_4.png">
+댓글 버튼을 누르면 댓글을 확인 및 등록할 수 있다.<br> <br>
+<img src="imgs/md_img_5.png">
+광고성 글을 등록하였다. <br> <br>
+<img src="imgs/md_img_6.png">
+모델이 해당 글을 광고로 분류하였으며, 따라서 제목 위에 광고 라벨이 표시되었다. <br> <br>
+
+[ 구현 영상 ]
+<img src="imgs/구현영상.gif">
+
+<hr>
+
 # KoBERT
 
 * [KoBERT](#kobert)
