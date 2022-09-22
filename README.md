@@ -50,6 +50,7 @@
 ### [ 구현 영상 ]
 <img src="imgs/구현영상.gif">
 
+<br>
 <hr>
 
 # KoBERT
